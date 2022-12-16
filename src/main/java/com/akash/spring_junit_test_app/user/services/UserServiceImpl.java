@@ -16,12 +16,7 @@ public class UserServiceImpl implements UserServices {
 
     @Override
     public User getUserById(int id) {
-        try {
-            return userRepository.findById(id).get();
-        } catch (Exception e) {
-            throw new NullPointerException();
-        }
-
+        return userRepository.findById(id).get();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.akash.spring_junit_test_app.user.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,6 @@ public class RegisterUser {
     public String getFirstName() {
         return this.firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

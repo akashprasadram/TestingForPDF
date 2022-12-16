@@ -15,4 +15,6 @@ public interface RegisterUserService {
     public RegisterUser updateUser(RegisterUser user);
 
     public void deleteUser(RegisterUser user);
+
+    public RegisterUser getUserByEmail(String email);
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.akash.spring_junit_test_app.user.enities.User;
 import com.akash.spring_junit_test_app.user.services.UserServices;
 import com.akash.spring_junit_test_app.user.util.PdfGenerator;
+import com.akash.spring_junit_test_app.user.util.PdfGenerator1;
 
 @RestController
 @RequestMapping("/api")
@@ -70,8 +71,18 @@ public class UserController {
     @ResponseBody
     public String generatePDF() {
         System.out.println("Generate PDF method called");
-        String filepath = "C:/Projects/Spring/JunitTest/JunitTest/user/pdf/savedReservation.pdf";
+        String filepath = "D:/pdf/saved.pdf";
         PdfGenerator generate = new PdfGenerator();
+        generate.generateItierary(filepath);
+        return "PDF Generated Successfully";
+    }
+
+    @RequestMapping(value = "/pdf1", method = RequestMethod.GET)
+    @ResponseBody
+    public String generatePDF1() {
+        System.out.println("Generate PDF method called");
+        String filepath = "D:/pdf/saved1.pdf";
+        PdfGenerator1 generate = new PdfGenerator1();
         generate.generateItierary(filepath);
         return "PDF Generated Successfully";
     }

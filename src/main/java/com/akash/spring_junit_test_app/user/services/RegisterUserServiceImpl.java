@@ -16,11 +16,14 @@ public class RegisterUserServiceImpl implements RegisterUserService {
 
     @Override
     public RegisterUser getUserById(int id) {
-        try {
+
             return userRepository.findById(id).get();
-        } catch (Exception e) {
-            throw new NullPointerException();
-        }
+
+    }
+    @Override
+    public RegisterUser getUserByEmail(String email) {
+
+            return userRepository.findByEmail(email);
 
     }
 
@@ -31,8 +34,7 @@ public class RegisterUserServiceImpl implements RegisterUserService {
 
     @Override
     public RegisterUser addUser(RegisterUser user) {
-        return null;
-        // return userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override

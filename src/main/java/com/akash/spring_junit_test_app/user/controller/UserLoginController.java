@@ -25,20 +25,36 @@ public class UserLoginController {
     @Autowired
     private RegisterUserService service;
 
+
+
     @RequestMapping("/")
     public String showHome() {
         return "index";
     }
 
     @RequestMapping("/showLogin")
-    public String showLogin() {
-        return "login";
+    public String showLogin(Model model) {
+        model.addAttribute("user",new LoginUser());
+        return "signin";
     }
 
-    @PostMapping("/login")
-    public String loginPage(@ModelAttribute("user") LoginUser user, Model model) {
+    @PostMapping("/signin")
+    public String loginController(@ModelAttribute("user") LoginUser user, Model model) {
         System.out.println(user);
-        model.addAttribute("username", user.getUsername());
+        RegisterUser user1=service.getUserByEmail(user.getUsername());
+        if(user1==null)
+        {
+            model.addAttribute("errormsg", "User is not present!!! Kindly Signup first....");
+            model.addAttribute("user", user);
+            return "signin";
+        }
+        else if(!user.getPassword().equals(user1.getPassword()))
+        {
+            model.addAttribute("errormsg", "Invalid Password!!!");
+            model.addAttribute("user", user);
+            return "signin";
+        }
+        model.addAttribute("username",user1.getFirstName()+" "+user1.getLastName());
         return "showUser";
     }
 
@@ -51,13 +67,13 @@ public class UserLoginController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signupController(@ModelAttribute("user") RegisterUser user, Model model) {
         System.out.println(user);
-        // model.addAttribute("username", user.getEmail())
         RegisterUser user1 = service.addUser(user);
         if (user1 == null) {
-            model.addAttribute("username", user);
+            model.addAttribute("user", user);
+            model.addAttribute("errormsg", "Unable to save user internal server error!!!");
             return "RegisterUser";
         }
-        model.addAttribute("username", user1.getEmail());
+        model.addAttribute("username",user1.getFirstName()+" "+user1.getLastName());
         return "showUser";
     }
 }
