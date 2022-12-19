@@ -1,11 +1,12 @@
 package com.akash.spring_junit_test_app.user.dto;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = "login")
@@ -18,6 +19,15 @@ public class RegisterUser {
     private String lastName;
     private String email;
     private String password;
+    private String role;
+
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public int getId() {
         return this.id;
@@ -30,6 +40,7 @@ public class RegisterUser {
     public String getFirstName() {
         return this.firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -66,6 +77,7 @@ public class RegisterUser {
                 ", lastName='" + getLastName() + "'" +
                 ", email='" + getEmail() + "'" +
                 ", password='" + getPassword() + "'" +
+                ", role='" + getRole() + "'" +
                 "}";
     }
 

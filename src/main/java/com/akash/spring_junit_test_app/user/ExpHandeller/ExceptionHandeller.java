@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class ExceptionHandeller {
 
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(value = NullPointerException.class)
-    public String ShowError(Model model, HttpSession session) {
-        model.addAttribute("msg", "No Data found");
-        session.setAttribute("msg", "No Data Found !........");
-        return "error";
-    }
+    // @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    // @ExceptionHandler(value = NullPointerException.class)
+    // public String ShowError(Model model, HttpSession session) {
+    //     model.addAttribute("msg", "No Data found");
+    //     session.setAttribute("msg", "No Data Found !........");
+    //     return "error";
+    // }
 }
